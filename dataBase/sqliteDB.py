@@ -24,9 +24,29 @@ def sqlStart():
     base.execute('CREATE TABLE IF NOT EXISTS Friday(ID INT PRIMARY KEY, Subject TEXT, Teacher TEXT, StartTime TEXT, EndTime TEXT, Link TEXT, Class TEXT)')
     base.commit()
 
-async def sqlAdd(state):
+async def sqlAddMonday(state):
     async with state.proxy() as data:
         cursor.execute('INSERT INTO Monday VALUES (?, ?, ?, ?, ?, ?, ?)', tuple(data.values()))
+        base.commit()
+
+async def sqlAddTuesday(state):
+    async with state.proxy() as data:
+        cursor.execute('INSERT INTO Tuesday VALUES (?, ?, ?, ?, ?, ?, ?)', tuple(data.values()))
+        base.commit()
+
+async def sqlAddWednesday(state):
+    async with state.proxy() as data:
+        cursor.execute('INSERT INTO Wednesday VALUES (?, ?, ?, ?, ?, ?, ?)', tuple(data.values()))
+        base.commit()
+
+async def sqlAddThursday(state):
+    async with state.proxy() as data:
+        cursor.execute('INSERT INTO Thursday VALUES (?, ?, ?, ?, ?, ?, ?)', tuple(data.values()))
+        base.commit()
+
+async def sqlAddFriday(state):
+    async with state.proxy() as data:
+        cursor.execute('INSERT INTO Friday VALUES (?, ?, ?, ?, ?, ?, ?)', tuple(data.values()))
         base.commit()
 
 async def sqlRead(message):
