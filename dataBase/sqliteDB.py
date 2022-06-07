@@ -64,7 +64,10 @@ async def sqlRead(message):
             await bot.send_message(message.from_user.id, f'{ret[0]} - {ret[1]}\nВчитель: {ret[2]}\nПочаток: {ret[3]}\nКінець: {ret[4]}\n', reply_markup=urlKB1)
     else:
         for ret in cursor.execute('SELECT * FROM Monday').fetchall():
-            await bot.send_message(message.from_user.id, f'{ret[0]} - {ret[1]}\nВчитель: {ret[2]}\nПочаток: {ret[3]}\nКінець: {ret[4]}\n', reply_markup=urlKB1)
+            if ret[0] <= 7:
+                await bot.send_message(message.from_user.id, f'{ret[0]} - {ret[1]}\nВчитель: {ret[2]}\nПочаток: {ret[3]}\nКінець: {ret[4]}\n', reply_markup=urlKB1)
+            else:
+                await bot.send_message(message.from_user.id, f'{ret[0]} - {ret[1]}\nВчитель: {ret[2]}\nПочаток: {ret[3]}\nКінець: {ret[4]}\n', reply_markup=urlKB2)
 
 async def sqlSelectMonday():
     return cursor.execute('SELECT * FROM Monday').fetchall()
@@ -83,7 +86,10 @@ async def sqlSelectFriday():
 
 async def sqlReadMonday(message):
     for ret in cursor.execute('SELECT * FROM Monday').fetchall():
-        await bot.send_message(message.from_user.id, f'{ret[0]} - {ret[1]}\nВчитель: {ret[2]}\nПочаток: {ret[3]}\nКінець: {ret[4]}\n', reply_markup=urlKB1)
+        if ret[0] <= 7:
+            await bot.send_message(message.from_user.id, f'{ret[0]} - {ret[1]}\nВчитель: {ret[2]}\nПочаток: {ret[3]}\nКінець: {ret[4]}\n', reply_markup=urlKB1)
+        else:
+            await bot.send_message(message.from_user.id, f'{ret[0]} - {ret[1]}\nВчитель: {ret[2]}\nПочаток: {ret[3]}\nКінець: {ret[4]}\n', reply_markup=urlKB2)
 
 async def sqlReadTuesday(message):
     for ret in cursor.execute('SELECT * FROM Tuesday').fetchall():
